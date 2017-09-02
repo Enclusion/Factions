@@ -19,9 +19,9 @@ public class FactionDeathEvent implements Listener {
 		this.plugin = plugin;
 	}
 
-	//@SuppressWarnings("deprecation")
-	//@EventHandler
-/*	public void onDeath(PlayerDeathEvent event) {
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
 		
 		if(FactionManager.getManager().isPlayerInFaction(player)) {
@@ -44,6 +44,6 @@ public class FactionDeathEvent implements Listener {
 			}
 			
 		}
-	}*/
+	}
 	
 }

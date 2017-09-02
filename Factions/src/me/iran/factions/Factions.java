@@ -9,15 +9,14 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.iran.factions.events.BreakBlockInClaim;
+import me.iran.factions.events.BlockChangeInClaim;
 import me.iran.factions.events.EnteringClaim;
-import me.iran.factions.events.ExplosionEvents;
 import me.iran.factions.events.FactionChat;
+import me.iran.factions.events.FactionDeathEvent;
 import me.iran.factions.events.InteractWithItemsInClaim;
 import me.iran.factions.events.MoveWhileTeleporting;
 import me.iran.factions.events.PlaceItemsInClaim;
-import me.iran.factions.events.PlayerDisconnectEvent;
-import me.iran.factions.events.PlayerLoginEvent;
+import me.iran.factions.events.PlayerConnectionEvents;
 import me.iran.factions.faction.ClaimEvent;
 import me.iran.factions.faction.FactionManager;
 import me.iran.factions.faction.cmd.FactionCommands;
@@ -45,15 +44,13 @@ public class Factions extends JavaPlugin {
 		}
 		
 		Bukkit.getPluginManager().registerEvents(new ClaimEvent(this), this);
-		//Bukkit.getPluginManager().registerEvents(new FactionDeathEvent(this), this);
-		Bukkit.getPluginManager().registerEvents(new BreakBlockInClaim(this), this);
+		Bukkit.getPluginManager().registerEvents(new FactionDeathEvent(this), this);
+		Bukkit.getPluginManager().registerEvents(new BlockChangeInClaim(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlaceItemsInClaim(this), this);
 		Bukkit.getPluginManager().registerEvents(new EnteringClaim(this), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerLoginEvent(this), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerDisconnectEvent(this), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerConnectionEvents(this), this);
 		Bukkit.getPluginManager().registerEvents(new MoveWhileTeleporting(this), this);
 		Bukkit.getPluginManager().registerEvents(new InteractWithItemsInClaim(this), this);
-		Bukkit.getPluginManager().registerEvents(new ExplosionEvents(this), this);
 		Bukkit.getPluginManager().registerEvents(new FactionChat(this), this);
 		
 		run.runTaskTimer(this, 0, 20L);

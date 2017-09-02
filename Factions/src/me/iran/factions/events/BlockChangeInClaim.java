@@ -5,16 +5,22 @@ import me.iran.factions.faction.Faction;
 import me.iran.factions.faction.FactionManager;
 import net.md_5.bungee.api.ChatColor;
 
+import java.util.Iterator;
+import java.util.List;
+
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 
-public class BreakBlockInClaim implements Listener {
+public class BlockChangeInClaim implements Listener {
 
 	Factions plugin;
 	
-	public BreakBlockInClaim (Factions plugin) {
+	public BlockChangeInClaim (Factions plugin) {
 		this.plugin = plugin;
 	}
 	
@@ -39,10 +45,24 @@ public class BreakBlockInClaim implements Listener {
 				event.setCancelled(true);
 				player.sendMessage(ChatColor.RED + "Can't break in the territory of " + ChatColor.LIGHT_PURPLE + blockFac.getName());
 			}
-			
-		
-			
 		}
+	}
+	
+	@EventHandler
+	public void onExplode(EntityExplodeEvent event) {
+
+		List<Block> destroyed = event.blockList();
+        
+		Iterator<Block> it = destroyed.iterator();
+        
+		if (event.getEntity() instanceof TNTPrimed) {
+			while (it.hasNext()) {
+				Block block = it.next();
+				if (FactionManager.getManager().insideClaim(block.getLocation()))
+					it.remove();
+			}
+		}
+
 	}
 	
 }
