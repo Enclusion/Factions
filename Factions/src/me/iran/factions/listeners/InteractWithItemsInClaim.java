@@ -23,9 +23,11 @@ public class InteractWithItemsInClaim implements Listener {
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
+		
 		if (event.getAction() == null) {
 			return;
 		}
+		
 		if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			
 			BlockState block = event.getClickedBlock().getState();

@@ -253,6 +253,11 @@ public class FactionCommands implements CommandExecutor {
 					return true;
 				}
 				
+				if(FactionManager.getManager().getFactionByPlayer(player).getLoc1() != null && FactionManager.getManager().getFactionByPlayer(player).getLoc1() != null) {
+					player.sendMessage(ChatColor.RED + "Your faction already has a claim, you must unclaim your current land first!");
+					return true;
+				}
+				
 				if(claimEvent.getClaim().containsKey(player.getName())) {
 					player.sendMessage(ChatColor.GOLD + "Seems like you are already in Claiming Mode, use a stick to pick your two corners and then Shift and Right Click the Air");
 					return true;

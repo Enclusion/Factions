@@ -36,7 +36,15 @@ public class ClaimEvent implements Listener {
 			return;
 		}
 		
-		if(event.getAction() == Action.LEFT_CLICK_BLOCK && player.getItemInHand().getType() == Material.STICK) {
+		if(!player.getItemInHand().hasItemMeta()) {
+			return;
+		}
+		
+		if(player.getItemInHand().getItemMeta().getDisplayName().equals(null)) {
+			return;
+		}
+		
+		if(event.getAction() == Action.LEFT_CLICK_BLOCK && player.getItemInHand().getType() == Material.STICK && player.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Claiming Wand")) {
 			
 			if(claiming.containsKey(player.getName())) {
 
@@ -72,7 +80,7 @@ public class ClaimEvent implements Listener {
 			
 		}
 		
-		if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.getItemInHand().getType() == Material.STICK) {
+		if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.getItemInHand().getType() == Material.STICK && player.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Claiming Wand")) {
 			
 			if(claiming.containsKey(player.getName())) {
 				
@@ -106,7 +114,7 @@ public class ClaimEvent implements Listener {
 			
 		}
 		
-		if(event.getAction() == Action.RIGHT_CLICK_AIR && player.getItemInHand().getType() == Material.STICK && player.isSneaking()) {
+		if(event.getAction() == Action.RIGHT_CLICK_AIR && player.getItemInHand().getType() == Material.STICK && player.isSneaking() && player.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Claiming Wand")) {
 			
 			if(claiming.containsKey(player.getName())) {
 				
@@ -136,6 +144,7 @@ public class ClaimEvent implements Listener {
 								faction.setBalance(faction.getBalance() - claimCost(claim.getLoc1(), claim.getLoc2()));
 								
 								player.sendMessage(ChatColor.GREEN + "You have claimed this land for " + ChatColor.GRAY + "$" + claimCost(claim.getLoc1(), claim.getLoc2()));
+								player.setItemInHand(null);
 								claiming.remove(player.getName());
 							} else {
 								player.sendMessage(ChatColor.RED + "You are missing " + ChatColor.YELLOW + "$" + Math.abs((faction.getBalance() - claimCost(claim.getLoc1(), claim.getLoc2()))));
