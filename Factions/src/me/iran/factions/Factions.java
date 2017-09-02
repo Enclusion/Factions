@@ -5,21 +5,20 @@ import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.iran.factions.events.BlockChangeInClaim;
-import me.iran.factions.events.EnteringClaim;
-import me.iran.factions.events.FactionChat;
-import me.iran.factions.events.FactionDeathEvent;
-import me.iran.factions.events.InteractWithItemsInClaim;
-import me.iran.factions.events.MoveWhileTeleporting;
-import me.iran.factions.events.PlaceItemsInClaim;
-import me.iran.factions.events.PlayerConnectionEvents;
 import me.iran.factions.faction.ClaimEvent;
 import me.iran.factions.faction.FactionManager;
 import me.iran.factions.faction.cmd.FactionCommands;
+import me.iran.factions.listeners.BlockChangeInClaim;
+import me.iran.factions.listeners.EnteringClaim;
+import me.iran.factions.listeners.FactionChat;
+import me.iran.factions.listeners.FactionDeathEvent;
+import me.iran.factions.listeners.InteractWithItemsInClaim;
+import me.iran.factions.listeners.MoveWhileTeleporting;
+import me.iran.factions.listeners.PlaceItemsInClaim;
+import me.iran.factions.listeners.PlayerConnectionEvents;
 import net.milkbowl.vault.economy.Economy;
 
 public class Factions extends JavaPlugin {
@@ -27,7 +26,7 @@ public class Factions extends JavaPlugin {
 	File file = null;
 	File fFile = null;
 	
-	public static Plugin plugin;
+	public static Factions instance;
 	
 	FactionRunnables run = new FactionRunnables(this);
 	
@@ -35,7 +34,7 @@ public class Factions extends JavaPlugin {
 	
 	public void onEnable() {
 		
-		Factions.plugin = this;
+		instance = this;
 
 		if(!setupEconomy()) {
 			System.out.println("Couldn't Hook into Economy Plugin, Disabling Factions");
@@ -119,6 +118,10 @@ public class Factions extends JavaPlugin {
         }
 
         return (economy != null);
+    }
+    
+    public static Factions getInstance() {
+    	return instance;
     }
 	
 }

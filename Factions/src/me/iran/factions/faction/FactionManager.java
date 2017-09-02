@@ -38,10 +38,10 @@ public class FactionManager {
 	
 	public  void loadFactions() {
 		
-		fFile = new File(Factions.plugin.getDataFolder(), "factions.yml");
+		fFile = new File(Factions.getInstance().getDataFolder(), "factions.yml");
 		
 		if(fFile.exists()) {
-			fFile = new File(Factions.plugin.getDataFolder(), "factions.yml");
+			fFile = new File(Factions.getInstance().getDataFolder(), "factions.yml");
 			
 			YamlConfiguration listConfig = YamlConfiguration.loadConfiguration(fFile);
 			listConfig.get("factions");
@@ -51,7 +51,7 @@ public class FactionManager {
 			for(int i = 0; i < allFac.size(); i++) {
 				String name = allFac.get(i);
 				
-				file = new File(Factions.plugin.getDataFolder() + "/Factions", name + ".yml");
+				file = new File(Factions.getInstance().getDataFolder() + "/Factions", name + ".yml");
 				
 				YamlConfiguration fac = YamlConfiguration.loadConfiguration(file);
 				
@@ -134,11 +134,11 @@ public class FactionManager {
 	public void saveFactions() {
 		// teams.yml file
 
-		fFile = new File(Factions.plugin.getDataFolder(), "factions.yml");
+		fFile = new File(Factions.getInstance().getDataFolder(), "factions.yml");
 
 		if (fFile.exists()) {
 
-			fFile = new File(Factions.plugin.getDataFolder(), "factions.yml");
+			fFile = new File(Factions.getInstance().getDataFolder(), "factions.yml");
 
 			YamlConfiguration listConfig = YamlConfiguration.loadConfiguration(fFile);
 
@@ -163,11 +163,11 @@ public class FactionManager {
 
 				Faction faction = getFactionByName(name);
 
-				file = new File(Factions.plugin.getDataFolder() + "/Factions", name + ".yml");
+				file = new File(Factions.getInstance().getDataFolder() + "/Factions", name + ".yml");
 
 				if (!file.exists()) {
 
-					file = new File(Factions.plugin.getDataFolder() + "/Factions", name + ".yml");
+					file = new File(Factions.getInstance().getDataFolder() + "/Factions", name + ".yml");
 
 					YamlConfiguration facConfig = YamlConfiguration.loadConfiguration(file);
 
@@ -243,7 +243,7 @@ public class FactionManager {
 					}
 				} else {
 
-					file = new File(Factions.plugin.getDataFolder() + "/Factions", name + ".yml");
+					file = new File(Factions.getInstance().getDataFolder() + "/Factions", name + ".yml");
 
 					YamlConfiguration facConfig = YamlConfiguration.loadConfiguration(file);
 
@@ -507,8 +507,8 @@ public class FactionManager {
 		
 		if(faction.getInvitesList().contains(player.getUniqueId().toString())) {
 
-			if(faction.getMemberList().size() >= Factions.plugin.getConfig().getInt("faction-limit")) {
-				player.sendMessage(ChatColor.RED + "This team has reached it's limit of " + Factions.plugin.getConfig().getInt("faction-limit") + " players");
+			if(faction.getMemberList().size() >= Factions.getInstance().getConfig().getInt("faction-limit")) {
+				player.sendMessage(ChatColor.RED + "This team has reached it's limit of " + Factions.getInstance().getConfig().getInt("faction-limit") + " players");
 				return;
 			}
 			

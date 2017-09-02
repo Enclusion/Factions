@@ -1,4 +1,4 @@
-package me.iran.factions.events;
+package me.iran.factions.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

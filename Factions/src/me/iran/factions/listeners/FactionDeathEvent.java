@@ -1,4 +1,4 @@
-package me.iran.factions.events;
+package me.iran.factions.listeners;
 
 import me.iran.factions.Factions;
 import me.iran.factions.faction.Faction;

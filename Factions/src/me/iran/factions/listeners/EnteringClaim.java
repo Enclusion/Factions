@@ -1,4 +1,4 @@
-package me.iran.factions.events;
+package me.iran.factions.listeners;
 
 import java.text.DecimalFormat;
 
@@ -9,8 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import me.iran.factions.Factions;
-import me.iran.factions.customevents.EnterClaimEvent;
-import me.iran.factions.customevents.LeaveClaimEvent;
+import me.iran.factions.customlisteners.EnterClaimEvent;
+import me.iran.factions.customlisteners.LeaveClaimEvent;
 import me.iran.factions.faction.Faction;
 import me.iran.factions.faction.FactionManager;
 import net.md_5.bungee.api.ChatColor;
